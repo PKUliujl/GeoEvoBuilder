@@ -9,5 +9,5 @@ GeoEvoBuilder, an efficient zero-shot learning method, is capable to improve bot
 2. GeoEvoBuilder relies on the environment used in [GeoSeqBuilder](https://github.com/PKUliujl/GeoSeqBuilder/).
 
 ### USAGE
-<!-- ====================== -->
-We are currently in the process of organizing the code and anticipate releasing the software soon.
+<!-- ====================== 
+We are currently in the process of organizing the code and anticipate releasing the software soon. -->
