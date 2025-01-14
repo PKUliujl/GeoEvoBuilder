@@ -12,3 +12,8 @@ optional arguments:
   -o OUTPUT, --output OUTPUT
                         Output file
 ```
+
+Here is an example:
+```
+python run_sequenceprofile.py -i 3mpc_A.aln -o 3mpc_A.pt
+```
