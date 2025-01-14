@@ -33,3 +33,6 @@ optional arguments:
   --verbose {0,1}       Display the intermediate sequences
   --MSA MSA             The distribution of sequence profile from MSA
 ```
+
+For general sequence design:
+```python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A```
