@@ -35,4 +35,6 @@ optional arguments:
 ```
 
 For general sequence design:
-```python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A```
+```
+python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A
+```
