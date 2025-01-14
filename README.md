@@ -42,3 +42,5 @@ For sequence design with additional [processed MSA information](https://github.c
 ```
 python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A --MSA examples/3mpc_A.pt
 ```
+
+### CITATION
