@@ -38,7 +38,7 @@ For general sequence design:
 ```
 python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A
 ```
-For sequence design with additional MSA information:
+For sequence design with additional [processed MSA information](https://github.com/PKUliujl/GeoEvoBuilder/tree/main/MSA_Processing):
 ```
 python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A --MSA examples/3mpc_A.pt
 ```
