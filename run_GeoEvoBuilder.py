@@ -1,7 +1,7 @@
 
 import torch
 from geoevobuilder.common.run_argparse import *
-#from geoevobuilder.sampling import samPling
+from geoevobuilder.sampling import samPling
 
 def GeoEvoBuilder(args,models):
     samPling(args,models)
