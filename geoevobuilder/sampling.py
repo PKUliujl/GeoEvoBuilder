@@ -75,7 +75,7 @@ def samPling(args,models):
             esm2in=torch.nn.functional.one_hot( decode_tockens.detach(),num_classes=33).to(device)
 
             if args.Fixed:
-                fix = args.Fixed.split(',')
+                fix = args.Fixed#.split(',')
                 fixid = [i.split('_') for i in fix]
                 fixid_list = [ int(i) for (i,j,k) in fixid]
                 for (i,j,k) in fixid:
