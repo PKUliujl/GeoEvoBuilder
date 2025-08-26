@@ -26,8 +26,8 @@ optional arguments:
   --n N                 The number of designed sequences. default: 10
   --SM SM               Starting mode with different sequence initializations (how many residues are randomly masked). default = 100 (%) masked, i.e. random
                         initialization)
-  --Fixed FIXED         Those residues are expected to remain unchanged with names following the format {residuenumber_chainid_resname,residuenumber_chainid_resname},
-                        e.g. 1_A_W,10_A_C Please note that the residuenumber is renumbered begining at 0.
+  --Fixed FIXED         Those residues are expected to remain unchanged with names following the format either {residuenumber_chainid_resname,residuenumber_chainid_resname},
+                        e.g. 1_A_W,10_A_C, or path to a file with one residue per line. Please note that the residuenumber is renumbered begining at 0.
   --outputPATH OUTPUTPATH, -oP OUTPUTPATH
                         the directory path of the outputfile. default: inputPATH
   --verbose {0,1}       Display the intermediate sequences
