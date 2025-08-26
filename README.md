@@ -38,6 +38,11 @@ For general sequence design:
 ```
 python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A --SM 100
 ```
+or see the design for dihydrofolate reductase (DHFR):
+```
+python run_GeoEvoBuilder.py -iP examples/ -i 3D80_A.pdb --chainID A --SM 50 --Fixed examples/3D80_A_fixed_residues
+```
+
 For sequence design with additional [processed MSA information](https://github.com/PKUliujl/GeoEvoBuilder/tree/main/MSA_Processing):
 ```
 python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A --MSA examples/3mpc_A.pt
