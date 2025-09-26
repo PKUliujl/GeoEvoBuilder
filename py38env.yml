@@ -62,6 +62,11 @@ dependencies:
     - fsspec==2023.6.0
     - gast==0.4.0
     - gemmi==0.7.3
+    - google-auth==2.26.1
+    - google-auth-oauthlib==1.0.0
+    - google-pasta==0.2.0
+    - googledrivedownloader==0.4
+    - grpcio==1.60.0
     - h5py==3.10.0
     - hjson==3.1.0
     - idna==3.4
@@ -113,7 +118,13 @@ dependencies:
     - scipy==1.10.1
     - seaborn==0.12.2
     - six==1.16.0
+    - tensorboard==2.14.0
+    - tensorboard-data-server==0.7.2
     - tensorboardx==2.6
+    - tensorflow==2.7.0
+    - tensorflow-addons==0.21.0
+    - tensorflow-estimator==2.7.0
+    - tensorflow-io-gcs-filesystem==0.34.0
     - termcolor==2.4.0
     - threadpoolctl==3.1.0
     - torch==1.12.0+cu113
