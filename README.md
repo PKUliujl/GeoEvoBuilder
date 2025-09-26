@@ -8,6 +8,7 @@ GeoEvoBuilder, an efficient zero-shot learning method, is capable to improve bot
 <!-- ====================== -->
 1. GeoEvoBuilder relies on [ESM2](https://github.com/facebookresearch/esm), please install it using `pip install fair-esm`.
 2. GeoEvoBuilder relies on the environment used in [GeoSeqBuilder](https://github.com/PKUliujl/GeoSeqBuilder/).
+
 Alternatively, users can install the environment directly using `conda env create -f py38env.yml`.
 
 ### MODEL & WEIGHT
