@@ -1,5 +1,5 @@
 # GeoEvoBuilder
-GeoEvoBuilder is an efficient zero-shot learning method that enhances both protein thermal stability and activity. This approach combines structure-based de novo sequence design with a protein language model (ESM2) to enable diverse functional protein design.
+GeoEvoBuilder is an efficient **zero-shot deep-learning** method that enhances **both protein thermal stability and activity**. This approach combines structure-based de novo sequence design with a protein language model (ESM2) to enable diverse functional protein design.
 
 <!-- ![Alt text](https://github.com/PKUliujl/GeoEvoBuilder/blob/main/image/flow.jpg) -->
 ![Alt text](https://github.com/PKUliujl/GeoEvoBuilder/blob/main/image/flow.png)
