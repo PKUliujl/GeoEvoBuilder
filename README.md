@@ -60,3 +60,18 @@ python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A --MSA exampl
 ```
 
 ### CITATION
+If you find GeoEvoBuilder useful in your research, please cite it:
+```
+@article{
+liu2025geo,
+author = {Jiale Liu  and Hantian You  and Zheng Guo  and Qin Xu  and Changsheng Zhang  and Luhua Lai },
+title = {GeoEvoBuilder: A deep learning framework for efficient functional and thermostable protein design},
+journal = {Proceedings of the National Academy of Sciences},
+volume = {122},
+number = {41},
+pages = {e2504117122},
+year = {2025},
+doi = {10.1073/pnas.2504117122},
+URL = {https://www.pnas.org/doi/abs/10.1073/pnas.2504117122}
+}
+```
