@@ -1,3 +1,4 @@
+"""A deep learning framework for efficient functional and thermostable protein design"""
 
 #from geoevobuilder.src import Sc
 from geoevobuilder.src import Se
@@ -8,3 +9,4 @@ from geoevobuilder.Utils.pdb_processor import fetchseq,batch_fea,batch_tri,Rotam
 sequence_design = Se.ESM2finetuning_Net()
 sequence_design_withMSA = Se.ESM2finetuning_Net('MSA')
 
+__version__ = "0.1.0"
