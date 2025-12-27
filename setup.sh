@@ -9,5 +9,4 @@ conda install -c salilab dssp==3.0.0 -y
 conda install -c anaconda "libboost=1.73.*" -y
 
 pip install uv
-
 uv pip install -e .[dev]

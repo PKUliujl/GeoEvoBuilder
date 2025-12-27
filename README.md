@@ -1,25 +1,37 @@
 # GeoEvoBuilder
+
 GeoEvoBuilder is an efficient **zero-shot deep-learning** method that enhances **both protein thermal stability and activity**. This approach combines structure-based de novo sequence design with a protein language model (ESM2) to enable diverse functional protein design.
 
-<!-- ![Alt text](https://github.com/PKUliujl/GeoEvoBuilder/blob/main/image/flow.jpg) -->
 ![Alt text](https://github.com/PKUliujl/GeoEvoBuilder/blob/main/image/flow.png)
 
 ### INSTALLATION
-<!-- ====================== -->
-1. GeoEvoBuilder relies on [ESM2](https://github.com/facebookresearch/esm), please install it using `pip install fair-esm`.
-2. GeoEvoBuilder relies on the environment used in [GeoSeqBuilder](https://github.com/PKUliujl/GeoSeqBuilder/).
 
-Alternatively, users can install the environment directly using `conda env create -f py38env.yml`.
+We recommend using conda for environment management.
+
+```bash
+# Create and activate environment
+conda create -n geoevobuilder python=3.11 -y
+conda activate geoevobuilder
+
+# Install system dependencies
+conda install -c salilab dssp==3.0.0 -y
+conda install -c anaconda "libboost=1.73.*" -y
+
+# Install Python dependencies using uv
+pip install uv
+uv pip install -e .[dev]
+```
 
 ### MODEL & WEIGHT
-Before running their tasks, users must download: 
+
+Before running their tasks, users must download:
+
   1. GeoEvoBuilder package via `git clone https://github.com/PKUliujl/GeoEvoBuilder.git`
   2. model weights using the [link](https://disk.pku.edu.cn/link/AABFDFF8FB729743A8A27FEB5855B31EE0) with access code `xx7W`.
 
 ### USAGE
-<!-- ====================== 
-We are currently in the process of organizing the code and anticipate releasing the software soon. -->
-```
+
+```bash
 To better use GeoEvoBuilder toolkit for functional protein sequence design, please add some of these parameters
 
 optional arguments:
@@ -43,25 +55,30 @@ optional arguments:
 ```
 
 For general sequence design:
-```
+
+```bash
 python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A --SM 100
 ```
 
 ![Alt text](https://github.com/PKUliujl/GeoEvoBuilder/blob/main/image/DHFR_results.png)
 
 or see the design for dihydrofolate reductase (DHFR):
-```
+
+```bash
 python run_GeoEvoBuilder.py -iP examples/ -i 3D80_A.pdb --chainID A --SM 50 --Fixed examples/3D80_A_fixed_residues
 ```
 
 For sequence design with additional [processed MSA information](https://github.com/PKUliujl/GeoEvoBuilder/tree/main/MSA_Processing):
-```
+
+```bash
 python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A --MSA examples/3mpc_A.pt
 ```
 
 ### CITATION
+
 If you find GeoEvoBuilder useful in your research, please cite it:
-```
+
+```bibtex
 @article{liu2025geo,
   author = {Jiale Liu  and Hantian You  and Zheng Guo  and Qin Xu  and Changsheng Zhang  and Luhua Lai },
   title = {GeoEvoBuilder: A deep learning framework for efficient functional and thermostable protein design},
