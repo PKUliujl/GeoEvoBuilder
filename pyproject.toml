@@ -1,0 +1,120 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "GeoEvoBuilder"
+dynamic = ["version"]
+authors = [{ name = "Jiale Liu", email = "liujl@pku.edu.cn" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+description = "A deep learning framework for efficient functional and thermostable protein design"
+requires-python = ">=3.11"
+dependencies = [
+  "biopython",
+  "fair-esm",
+  "pandas",
+  "tensorflow-cpu",
+  "torch==2.8.0",
+  "torch_geometric==2.4.0",
+  "torch_scatter @ https://data.pyg.org/whl/torch-2.8.0+cu128/torch_scatter-2.1.2+pt28cu128-cp311-cp311-linux_x86_64.whl",
+  "tqdm",
+  "uv",
+]
+
+[project.urls]
+Paper = "https://www.pnas.org/doi/abs/10.1073/pnas.2504117122"
+
+[tool.setuptools.dynamic]
+version = { attr = "geoevobuilder.__version__" }
+
+[project.optional-dependencies]
+dev = [
+  "mypy",
+  "pandas-stubs",
+  "pre-commit",
+  "pytest",
+  "pytest-cov",
+  "pytest-env",
+  "pytest-html",
+  "pytest-xdist",
+  "ruff",
+  "types-tqdm",
+]
+
+[tool.ruff]
+target-version = "py311"
+preview = true
+line-length = 100
+src = ["geoevobuilder"]
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle
+  "F",   # Pyflakes
+  "C90", # mccabe
+  "I",   # isort
+  "UP",  # pyupgrade
+  "B",   # flake8-bugbear
+  "A",   # flake8-builtins
+  "SIM", # flake8-simplify
+  "TID", # flake8-tidy-imports
+  "PLE", # pylint-error
+  "RUF", # ruff
+]
+extend-select = ["W", "PLW"]
+ignore = ["B905", "E203", "E501", "E741", "UP037"]
+unfixable = ["F401"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["geoevobuilder"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 12
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.flake8-builtins]
+builtins-allowed-modules = []
+builtins-ignorelist = []
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"*.ipynb" = ["F401", "RUF059"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+[tool.mypy]
+python_version = "3.11"
+pretty = true
+no_implicit_optional = true
+show_error_codes = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_ignores = false
+namespace_packages = false
+enable_incomplete_feature = ["Unpack"]
+disable_error_code = ["import-not-found", "import-untyped", "no-any-return"]
+
+[[tool.mypy.overrides]]
+module = ["torch_geometric.*"]
+ignore_missing_imports = true
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+"geoevobuilder" = ["**/*.pdb", "**/*.py", "**/*.yaml"]
+
+[tool.pytest.ini_options]
+addopts = "-v -s --tb=short --strict-markers --color=yes"
+testpaths = ["tests"]
+env = ["TQDM_DISABLE=1"]
