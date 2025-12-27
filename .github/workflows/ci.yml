@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.11"]
+      fail-fast: false
+    defaults:
+      run:
+        shell: bash -l {0}
+    name: ${{ matrix.os }} py ${{ matrix.python-version }} tests
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          python-version: ${{ matrix.python-version }}
+          activate-environment: geoevobuilder
+          channels: conda-forge,defaults
+          use-mamba: true
+
+      - name: Install package and dependencies
+        run: |
+          bash setup.sh
