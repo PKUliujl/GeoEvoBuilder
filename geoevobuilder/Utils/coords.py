@@ -4,7 +4,7 @@ from scipy.spatial import distance_matrix
 
 def coords_fetch(pdbfile, chain):
     # pdbfile,chain = pdbfilechain.split('_')
-    f = open(pdbfile, "r")
+    f = open(pdbfile)
     rows = f.readlines()
     f.close()
     coords_CA = []

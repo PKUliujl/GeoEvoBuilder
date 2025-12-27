@@ -1,19 +1,18 @@
-# -*- coding: utf-8 -*-
 """
 Created on Wed Sep  8 16:17:36 2020
 
 @author: Administrator
 """
 
-import pandas as pd
+import warnings
+from math import cos, sin
+
 import Bio
 import Bio.PDB
-from Bio.PDB.DSSP import DSSP
 import numpy as np
+import pandas as pd
+from Bio.PDB.DSSP import DSSP
 from scipy.spatial import distance_matrix
-from math import sin, cos
-
-import warnings
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
@@ -42,7 +41,7 @@ standard_aa_names = [
     "TYR",
 ]
 
-## 20 standard anino acids
+# 20 standard anino acids
 
 AA = {
     "A": 0,
@@ -171,7 +170,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                 residue_list = [residue.id for residue in chain]
                 # print("residue list: ",residue_list) #dtype
                 matrix = [
-                    [i, chain.id, j, l, dssp[(chain.id, chain[int(l)].id)][2], n, p]
+                    [i, chain.id, j, l, dssp[chain.id, chain[int(l)].id][2], n, p]
                     for i, (j, (k, l, m), (n, p)) in enumerate(
                         zip(sequence_list, residue_list, phi_psi_list)
                     )
@@ -183,10 +182,10 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                 edge_attributes = []
                 edge_index = []
                 position_encoding = []
-                absolutepostion = int(matrix.iloc[0, 3])  ##first node
+                absolutepostion = int(matrix.iloc[0, 3])  # first node
                 for i in range(int(interval_b), int(interval_e)):  # len(matrix)
                     each_node_feature = []
-                    ####first four columns are sin *cos (phi psi)
+                    # first four columns are sin *cos (phi psi)
                     if pd.isna(matrix.iloc[i, -2]):
                         each_node_feature.extend([
                             0,
@@ -244,15 +243,15 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                             cos(matrix.iloc[i, -1] * 3),
                             cos(matrix.iloc[i, -1] * 4),
                         ])
-                    ###The next three columns are 3 states of DSSP
+                    # The next three columns are 3 states of DSSP
                     each_node_feature.extend(eight2three(matrix.iloc[i, 4]))
                     node_category.append(AA[matrix.iloc[i, 2]])
-                    ##local coordinatate
+                    # local coordinatate
                     CA_coord = chain[int(matrix.iloc[i, 3])]["CA"].coord
                     C_coord = chain[int(matrix.iloc[i, 3])]["C"].coord
                     N_coord = chain[int(matrix.iloc[i, 3])]["N"].coord
                     O_coord = chain[int(matrix.iloc[i, 3])]["O"].coord
-                    CA_C = C_coord - CA_coord  ## norm   np.linalg.norm( CA_C )
+                    CA_C = C_coord - CA_coord  # norm   np.linalg.norm( CA_C )
                     CA_N = N_coord - CA_coord
                     CA_O = O_coord - CA_coord
                     orthognal = np.cross(CA_C, CA_N)
@@ -260,7 +259,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                     # each_node_feature.extend( CA_N.tolist() )
                     # each_node_feature.extend( orthognal.tolist())
                     # node_feature.append(each_node_feature )
-                    NA = ns.search(chain[int(matrix.iloc[i, 3])]["CA"].coord, 12)  ##Neighbor Atoms
+                    NA = ns.search(chain[int(matrix.iloc[i, 3])]["CA"].coord, 12)  # Neighbor Atoms
                     # print(i,matrix.iloc[i,3],[atom.get_parent().id[1] for atom in NA if atom.id=='CA'])
                     All_CA = [atom for atom in NA if atom.id == "CA"]  # atom.get_parent().id[1]
                     if len(All_CA) == 1:
@@ -291,7 +290,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot((CA.coord - CA_coord), orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## CA -> C
+                            # CA -> C
                             CA_C_dis = np.linalg.norm(CA.get_parent()["C"].coord - CA_coord)
                             CA_C_orientation = [
                                 np.dot(CA.get_parent()["C"].coord - CA_coord, CA_C)
@@ -301,7 +300,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["C"].coord - CA_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## CA -> N
+                            # CA -> N
                             CA_N_dis = np.linalg.norm(CA.get_parent()["N"].coord - CA_coord)
                             CA_N_orientation = [
                                 np.dot(CA.get_parent()["N"].coord - CA_coord, CA_C)
@@ -311,7 +310,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["N"].coord - CA_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## CA_O
+                            # CA_O
                             CA_O_dis = np.linalg.norm(CA.get_parent()["O"].coord - CA_coord)
                             CA_O_orientation = [
                                 np.dot(CA.get_parent()["O"].coord - CA_coord, CA_C)
@@ -321,7 +320,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["O"].coord - CA_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ##CA_CB
+                            # CA_CB
                             if CA.get_parent().resname != "GLY":
                                 CA_CB_dis = np.linalg.norm(CA.get_parent()["CB"].coord - CA_coord)
                                 CA_CB_orientation = [
@@ -354,7 +353,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 / np.linalg.norm(orthognal),
                             ]
 
-                            ## O -> N, where O is from the central residue and N is from the neighbor residue
+                            # O -> N, where O is from the central residue and N is from the neighbor residue
                             O_N_dis = np.linalg.norm(CA.get_parent()["N"].coord - O_coord)
                             O_N_orientation = [
                                 np.dot(CA.get_parent()["N"].coord - O_coord, CA_C)
@@ -364,7 +363,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["N"].coord - O_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## O ->C
+                            # O ->C
                             O_C_dis = np.linalg.norm(CA.get_parent()["C"].coord - O_coord)
                             O_C_orientation = [
                                 np.dot(CA.get_parent()["C"].coord - O_coord, CA_C)
@@ -374,7 +373,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["C"].coord - O_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## O ->O
+                            # O ->O
                             O_O_dis = np.linalg.norm(CA.get_parent()["O"].coord - O_coord)
                             O_O_orientation = [
                                 np.dot(CA.get_parent()["O"].coord - O_coord, CA_C)
@@ -384,14 +383,14 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["O"].coord - O_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## O ->CA
+                            # O ->CA
                             O_CA_dis = np.linalg.norm(CA.coord - O_coord)
                             O_CA_orientation = [
                                 np.dot(CA.coord - O_coord, CA_C) / np.linalg.norm(CA_C),
                                 np.dot(CA.coord - O_coord, CA_N) / np.linalg.norm(CA_N),
                                 np.dot(CA.coord - O_coord, orthognal) / np.linalg.norm(orthognal),
                             ]
-                            ## o ->CB
+                            # o ->CB
                             if CA.get_parent().resname != "GLY":
                                 O_CB_dis = np.linalg.norm(CA.get_parent()["CB"].coord - O_coord)
                                 O_CB_orientation = [
@@ -424,7 +423,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 / np.linalg.norm(orthognal),
                             ]
 
-                            ## N -> O, where N is from the central residue and O is from the neighbor residue
+                            # N -> O, where N is from the central residue and O is from the neighbor residue
                             N_O_dis = np.linalg.norm(CA.get_parent()["O"].coord - N_coord)
                             N_O_orientation = [
                                 np.dot(CA.get_parent()["O"].coord - N_coord, CA_C)
@@ -434,7 +433,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["O"].coord - N_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## N -> C
+                            # N -> C
                             N_C_dis = np.linalg.norm(CA.get_parent()["C"].coord - N_coord)
                             N_C_orientation = [
                                 np.dot(CA.get_parent()["C"].coord - N_coord, CA_C)
@@ -444,7 +443,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["C"].coord - N_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## N -> N
+                            # N -> N
                             N_N_dis = np.linalg.norm(CA.get_parent()["N"].coord - N_coord)
                             N_N_orientation = [
                                 np.dot(CA.get_parent()["N"].coord - N_coord, CA_C)
@@ -454,14 +453,14 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["N"].coord - N_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## N -> CA
+                            # N -> CA
                             N_CA_dis = np.linalg.norm(CA.coord - N_coord)
                             N_CA_orientation = [
                                 np.dot(CA.coord - N_coord, CA_C) / np.linalg.norm(CA_C),
                                 np.dot(CA.coord - N_coord, CA_N) / np.linalg.norm(CA_N),
                                 np.dot(CA.coord - N_coord, orthognal) / np.linalg.norm(orthognal),
                             ]
-                            ## N ->CB
+                            # N ->CB
                             if CA.get_parent().resname != "GLY":
                                 N_CB_dis = np.linalg.norm(CA.get_parent()["CB"].coord - N_coord)
                                 N_CB_orientation = [
@@ -494,7 +493,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 / np.linalg.norm(orthognal),
                             ]
 
-                            ## C -> C,
+                            # C -> C,
                             C_C_dis = np.linalg.norm(CA.get_parent()["C"].coord - C_coord)
                             C_C_orientation = [
                                 np.dot(CA.get_parent()["C"].coord - C_coord, CA_C)
@@ -504,7 +503,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["C"].coord - C_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## C -> N
+                            # C -> N
                             C_N_dis = np.linalg.norm(CA.get_parent()["N"].coord - C_coord)
                             C_N_orientation = [
                                 np.dot(CA.get_parent()["N"].coord - C_coord, CA_C)
@@ -514,7 +513,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["N"].coord - C_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## C -> O
+                            # C -> O
                             C_O_dis = np.linalg.norm(CA.get_parent()["O"].coord - C_coord)
                             C_O_orientation = [
                                 np.dot(CA.get_parent()["O"].coord - C_coord, CA_C)
@@ -524,14 +523,14 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 np.dot(CA.get_parent()["O"].coord - C_coord, orthognal)
                                 / np.linalg.norm(orthognal),
                             ]
-                            ## C -> CA
+                            # C -> CA
                             C_CA_dis = np.linalg.norm(CA.coord - C_coord)
                             C_CA_orientation = [
                                 np.dot(CA.coord - C_coord, CA_C) / np.linalg.norm(CA_C),
                                 np.dot(CA.coord - C_coord, CA_N) / np.linalg.norm(CA_N),
                                 np.dot(CA.coord - C_coord, orthognal) / np.linalg.norm(orthognal),
                             ]
-                            ## C ->CB
+                            # C ->CB
                             if CA.get_parent().resname != "GLY":
                                 C_CB_dis = np.linalg.norm(CA.get_parent()["CB"].coord - C_coord)
                                 C_CB_orientation = [
@@ -564,7 +563,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 / np.linalg.norm(orthognal),
                             ]
 
-                            ## CB ->CB
+                            # CB ->CB
                             if chain[int(matrix.iloc[i, 3])].resname != "GLY":
                                 CB_C_dis = np.linalg.norm(
                                     CA.get_parent()["C"].coord
@@ -763,7 +762,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 / np.linalg.norm(orthognal),
                             ]
 
-                            ##CG1 --> C
+                            # CG1 --> C
                             CG1_C_dis = np.linalg.norm(
                                 CA.get_parent()["C"].coord
                                 - chain[int(matrix.iloc[i, 3])]["CG1"].coord
@@ -933,7 +932,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                                 / np.linalg.norm(orthognal),
                             ]
 
-                            ##CG2-->
+                            # CG2-->
                             CG2_C_dis = np.linalg.norm(
                                 CA.get_parent()["C"].coord
                                 - chain[int(matrix.iloc[i, 3])]["CG2"].coord
@@ -1454,7 +1453,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
                             each_edge_attributes.extend(CG2_CG2_orientation)
 
                             # edge_attributes.append(each_edge_attributes)
-                            ##beginnode to endnode
+                            # beginnode to endnode
                             endnode = matrix[matrix.iloc[:, 3] == CA.get_parent().id[1]].iloc[0, 0]
 
                             # each_edge_attributes.extend([sin(endnode- i ),cos(endnode-i)])
@@ -1492,7 +1491,7 @@ def triangularexpression(pdbfiles, chainID, edge_index, interval_b, interval_e):
                 sequence_list = poly.get_sequence()
                 residue_list = [residue.id for residue in chain]
                 matrix = [
-                    [i, chain.id, j, l, dssp[(chain.id, chain[int(l)].id)][2], n, p]
+                    [i, chain.id, j, l, dssp[chain.id, chain[int(l)].id][2], n, p]
                     for i, (j, (k, l, m), (n, p)) in enumerate(
                         zip(sequence_list, residue_list, phi_psi_list)
                     )
@@ -1501,8 +1500,8 @@ def triangularexpression(pdbfiles, chainID, edge_index, interval_b, interval_e):
                 triangle_index_total = []
                 triangle2line_total = []
                 for i in range(int(interval_b), int(interval_e)):  # len(matrix)
-                    ## surrounding residues
-                    NA = ns.search(chain[int(matrix.iloc[i, 3])]["CA"].coord, 12)  ##Neighbor Atoms
+                    # surrounding residues
+                    NA = ns.search(chain[int(matrix.iloc[i, 3])]["CA"].coord, 12)  # Neighbor Atoms
                     # print(i,matrix.iloc[i,3],[atom.get_parent().id[1] for atom in NA if atom.id=='CA'])
                     All_CA = [
                         atom
@@ -1519,7 +1518,7 @@ def triangularexpression(pdbfiles, chainID, edge_index, interval_b, interval_e):
                         )
                         CA_coords.append(CA.coord.tolist())
                     dis_map = distance_matrix(CA_coords, CA_coords)
-                    dis_map = np.triu(dis_map)  ## 上三角
+                    dis_map = np.triu(dis_map)  # 上三角
                     index_less12 = np.argwhere((dis_map < 12) & (dis_map > 0))
                     triangle_index = []
                     for idx_i, idx_j in index_less12:

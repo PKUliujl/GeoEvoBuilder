@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 
 ###################################################################################
-#### This code is a part from OPUS-Rota4, https://doi.org/10.1093/bib/bbab529.  ###
-#### If you find use, please cite it.                                           ###
+# This code is a part from OPUS-Rota4, https://doi.org/10.1093/bib/bbab529.  ###
+# If you find use, please cite it.                                           ###
 ###################################################################################
 """
 Created on Wed Apr 27 13:27:07 2022
@@ -10,13 +9,15 @@ Created on Wed Apr 27 13:27:07 2022
 @author: liujl
 """
 
-import numpy as np
-from geoevobuilder.builder.myclass import Atoms, Residues
 import datetime
+
+import numpy as np
+
+from geoevobuilder.builder.myclass import Atoms, Residues
 
 
 def readPDB(filename, chainID, purpose=None):
-    f = open(filename, "r")
+    f = open(filename)
     atomsDatas = []
     for line in f.readlines():
         line = line.strip()

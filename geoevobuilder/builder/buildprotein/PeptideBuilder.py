@@ -1,12 +1,13 @@
 ##################################################################################
-#### This code is a part from OPUS-Rota4, https://doi.org/10.1093/bib/bbab529. ###
-#### If you find use, please cite it.                                          ###
+# This code is a part from OPUS-Rota4, https://doi.org/10.1093/bib/bbab529. ###
+# If you find use, please cite it.                                          ###
 ##################################################################################
 
-import tensorflow as tf
 import numpy as np
-from geoevobuilder.builder.myclass import Atoms
+import tensorflow as tf
+
 from geoevobuilder.builder.buildprotein import Geometry
+from geoevobuilder.builder.myclass import Atoms
 
 
 def get_norm(v):
@@ -76,7 +77,7 @@ def calculateCoordinates(c1, c2, c3, L, ang, di):
 
 def makeSer(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Serine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -92,7 +93,7 @@ def makeSer(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeCys(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Cysteine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -108,7 +109,7 @@ def makeCys(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeVal(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Valine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -130,7 +131,7 @@ def makeVal(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeIle(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates an Isoleucine residue"""
-    ##R-group
+    # R-group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -157,7 +158,7 @@ def makeIle(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeLeu(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Leucine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -184,7 +185,7 @@ def makeLeu(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeThr(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Threonine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -206,7 +207,7 @@ def makeThr(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeArg(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates an Arginie residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -249,7 +250,7 @@ def makeArg(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeLys(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Lysine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -280,7 +281,7 @@ def makeLys(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeAsp(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates an Aspartic Acid residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -307,7 +308,7 @@ def makeAsp(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeAsn(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates an Asparagine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -334,7 +335,7 @@ def makeAsn(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeGlu(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Glutamic Acid residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -366,7 +367,7 @@ def makeGlu(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeGln(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Glutamine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -398,7 +399,7 @@ def makeGln(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeMet(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Methionine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -424,7 +425,7 @@ def makeMet(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeHis(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Histidine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -463,7 +464,7 @@ def makeHis(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makePro(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Proline residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -495,7 +496,7 @@ def makePro(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makePhe(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Phenylalanine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -540,7 +541,7 @@ def makePhe(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeTyr(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Tyrosine residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle
@@ -591,7 +592,7 @@ def makeTyr(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
 
 def makeTrp(N, CA, C, O, CB, geo, atoms_matrix, residue, rotamer):
     """Creates a Tryptophan residue"""
-    ##R-Group
+    # R-Group
     CA_CB_length = geo.CA_CB_length
     C_CA_CB_angle = geo.C_CA_CB_angle
     N_C_CA_CB_diangle = geo.N_C_CA_CB_diangle

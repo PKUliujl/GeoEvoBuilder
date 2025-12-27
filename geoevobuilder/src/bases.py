@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Tue Sep 14 13:51:21 2020
 
@@ -12,7 +11,7 @@ from torch_geometric.utils import add_self_loops, degree
 
 class GCNconv(MessagePassing):
     def __init__(self, in_channels, out_channels, edge_length=None):
-        super(GCNconv, self).__init__(aggr="add")  ## 'add' aggregation
+        super().__init__(aggr="add")  # 'add' aggregation
         self.in_channels = in_channels
         self.out_channels = out_channels
         self.lin1 = torch.nn.Linear(out_channels, out_channels)

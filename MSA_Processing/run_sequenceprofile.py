@@ -1,7 +1,7 @@
+import argparse
+
 import Bio
 import Bio.PDB
-
-import argparse
 
 parser = argparse.ArgumentParser(
     description="Transform the MSA information to the sequence profile distribution"
@@ -45,7 +45,7 @@ AA = {
     "Z": 20,
 }
 
-f = open(args.input, "r")
+f = open(args.input)
 rows = f.readlines()
 f.close()
 

@@ -1,6 +1,7 @@
 import numpy as np
-from geoevobuilder.builder.myclass import Atoms, Residues, Myio
+
 from geoevobuilder.builder.buildprotein import RebuildStructure
+from geoevobuilder.builder.myclass import Atoms, Myio, Residues
 
 
 def builder(inputpdbfile, chainID, torsions, outputpdbfile, seq_tobe_designed=None):

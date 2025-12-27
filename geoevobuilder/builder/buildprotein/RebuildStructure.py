@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 ##################################################################################
-#### This code is a part from OPUS-Rota4, https://doi.org/10.1093/bib/bbab529. ###
-#### If you find use, please cite it.                                          ###
+# This code is a part from OPUS-Rota4, https://doi.org/10.1093/bib/bbab529. ###
+# If you find use, please cite it.                                          ###
 ##################################################################################
 
 from cgitb import reset
-from geoevobuilder.builder.buildprotein import Geometry
-from geoevobuilder.builder.buildprotein import PeptideBuilder
+
+from geoevobuilder.builder.buildprotein import Geometry, PeptideBuilder
 
 
 def extractmc(atomsData_real, seq_tobe_designed=None):
@@ -107,7 +106,7 @@ def rebuild_Val(residuesData, geosData, init_atoms_matrix):
     for idx, (residue, geo) in enumerate(zip(residuesData, geosData)):
         num_rotamers = residue.num_dihedrals
         # rotamer = rotamers[count: count+num_rotamers]
-        rotamer = [float(175.0)]
+        rotamer = [175.0]
         atoms, atoms_names = PeptideBuilder.get_coordinate(rotamer, residue, geo, init_atoms_matrix)
         atoms_matrix.extend(atoms)
         atoms_matrix_name.append(atoms_names)
@@ -126,7 +125,7 @@ def rebuild_Ile(residuesData, geosData, init_atoms_matrix):
     for idx, (residue, geo) in enumerate(zip(residuesData, geosData)):
         num_rotamers = residue.num_dihedrals
         # rotamer = rotamers[count: count+num_rotamers]
-        rotamer = [float(-65.0), float(170.0)]
+        rotamer = [(-65.0), 170.0]
         atoms, atoms_names = PeptideBuilder.get_coordinate(rotamer, residue, geo, init_atoms_matrix)
         atoms_matrix.extend(atoms)
         atoms_matrix_name.append(atoms_names)

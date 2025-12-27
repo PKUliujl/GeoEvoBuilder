@@ -1,19 +1,23 @@
-from geoevobuilder import (
-    Val_builder,
-    builder,
-    batch_fea,
-    batch_tri,
-    fetchseq,
-    Rotamer_number,
-    AA,
-    AA_reverse,
-)
+import datetime
+import os
+import random
+
+import numpy as np
 
 # from geoevobuilder.distributionR.samplingR import samplingr
-import torch, os
-import numpy as np
-import datetime, random
+import torch
 import torch.nn.functional as F
+
+from geoevobuilder import (
+    AA,
+    AA_reverse,
+    Rotamer_number,
+    Val_builder,
+    batch_fea,
+    batch_tri,
+    builder,
+    fetchseq,
+)
 
 standard_aa_names = {
     "ALA": 0,
@@ -47,7 +51,7 @@ def samPling(args, models):
     )
     seq_alpha, seqnumber = fetchseq(os.path.join(args.inputPATH, args.inputfile), args.chainID)
     protein_graph = batch_fea(args.inputfile[:-4] + "_Val.pdb", args.chainID, len(seq_alpha))
-    ##features
+    # features
     y = torch.tensor(seqnumber).to(device)
 
     x = torch.from_numpy(protein_graph["Node_features"]).float().to(device)
@@ -106,7 +110,7 @@ def samPling(args, models):
                     )
                     .unsqueeze(0)
                     .to(device)
-                )  ## random mutations for these masked positions
+                )  # random mutations for these masked positions
             condition = torch.scatter(
                 torch.zeros(y_initial.size(0), 20).to(device), 1, y_initial.unsqueeze(1), 1
             ).float()
@@ -260,7 +264,7 @@ def samPling(args, models):
             final_seqs.write(seq + "\n")
             average_acc += acc
         final_seqs.close()
-        print("Average sequence recovery: {:.4f}".format(average_acc / (output_iter + 1)))
+        print(f"Average sequence recovery: {average_acc / (output_iter + 1):.4f}")
         print(
             "Writing sequences to "
             + os.path.abspath(

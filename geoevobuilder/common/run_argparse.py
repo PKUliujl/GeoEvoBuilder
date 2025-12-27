@@ -1,6 +1,5 @@
 import argparse
 import os
-
 from pathlib import Path
 
 
@@ -10,7 +9,7 @@ def parse_fixed_res(value):
 
     try:
         if Path(value).is_file():
-            with open(value, "r") as f:
+            with open(value) as f:
                 return [line.strip() for line in f if line.strip()]
     except (OSError, TypeError):
         pass

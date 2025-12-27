@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 ###################################################################################
-#### This code is a part from OPUS-Rota4, https://doi.org/10.1093/bib/bbab529.  ###
-#### If you find use, please cite it.                                           ###
+# This code is a part from OPUS-Rota4, https://doi.org/10.1093/bib/bbab529.  ###
+# If you find use, please cite it.                                           ###
 ###################################################################################
 """
 Created on Wed Apr 27 13:29:44 2022

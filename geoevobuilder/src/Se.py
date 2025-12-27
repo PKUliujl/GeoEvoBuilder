@@ -1,13 +1,16 @@
-import torch, os
-from torch_geometric.nn import *
+import os
+
+import torch
 import torch.nn.functional as F
+from torch_geometric.nn import *
 from torch_scatter import scatter
+
 from geoevobuilder.src.bases import GCNconv
 
 
 class Net(torch.nn.Module):
     def __init__(self):
-        super(Net, self).__init__()
+        super().__init__()
 
         self.conv1_1 = GCNconv(in_channels=26, out_channels=50, edge_length=345)  # 160
         self.BN1_1 = torch.nn.BatchNorm1d(50)
@@ -141,7 +144,7 @@ class Net(torch.nn.Module):
         masked_node_update = torch.matmul(condition[col].unsqueeze(1), edge_weight).squeeze(1)
         condition_out = scatter(masked_node_update, row, dim=0, reduce="sum")
 
-        ## triangular interactions
+        # triangular interactions
         index_i, index_j, index_k = triangle_nodes
         ed_ij, ed_kj, ed_ik, ed_ki = triangle_edges
 
@@ -182,7 +185,7 @@ class Net(torch.nn.Module):
 
 class ESM2finetuning_Net(torch.nn.Module):
     def __init__(self, mode=None):
-        super(ESM2finetuning_Net, self).__init__()
+        super().__init__()
 
         self.Net = Net()
         # self.Net.eval()
