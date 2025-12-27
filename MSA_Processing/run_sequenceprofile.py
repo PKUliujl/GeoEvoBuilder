@@ -1,8 +1,5 @@
 import argparse
 
-import Bio
-import Bio.PDB
-
 parser = argparse.ArgumentParser(
     description="Transform the MSA information to the sequence profile distribution"
 )
@@ -56,7 +53,6 @@ for row in rows:
         seqs.append(AA[i])
     sequence_profile.append(seqs)
 
-import numpy as np
 import torch
 import torch.nn.functional as F
 

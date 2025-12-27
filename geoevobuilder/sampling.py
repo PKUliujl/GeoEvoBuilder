@@ -11,11 +11,9 @@ import torch.nn.functional as F
 from geoevobuilder import (
     AA,
     AA_reverse,
-    Rotamer_number,
     Val_builder,
     batch_fea,
     batch_tri,
-    builder,
     fetchseq,
 )
 

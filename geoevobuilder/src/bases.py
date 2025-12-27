@@ -6,7 +6,7 @@ Created on Tue Sep 14 13:51:21 2020
 
 import torch
 from torch_geometric.nn import MessagePassing
-from torch_geometric.utils import add_self_loops, degree
+from torch_geometric.utils import degree
 
 
 class GCNconv(MessagePassing):

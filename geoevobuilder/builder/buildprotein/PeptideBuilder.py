@@ -6,7 +6,6 @@
 import numpy as np
 import tensorflow as tf
 
-from geoevobuilder.builder.buildprotein import Geometry
 from geoevobuilder.builder.myclass import Atoms
 
 

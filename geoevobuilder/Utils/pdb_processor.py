@@ -7,7 +7,6 @@ Created on Wed Sep  8 16:17:36 2020
 import warnings
 from math import cos, sin
 
-import Bio
 import Bio.PDB
 import numpy as np
 import pandas as pd

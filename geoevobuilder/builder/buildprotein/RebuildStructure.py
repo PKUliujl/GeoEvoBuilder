@@ -3,7 +3,6 @@
 # If you find use, please cite it.                                          ###
 ##################################################################################
 
-from cgitb import reset
 
 from geoevobuilder.builder.buildprotein import Geometry, PeptideBuilder
 
