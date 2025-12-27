@@ -4,7 +4,7 @@ GeoEvoBuilder is an efficient **zero-shot deep-learning** method that enhances *
 
 ![Alt text](https://github.com/PKUliujl/GeoEvoBuilder/blob/main/image/flow.png)
 
-### INSTALLATION
+## INSTALLATION
 
 We recommend using conda for environment management.
 
@@ -22,14 +22,14 @@ pip install uv
 uv pip install -e .[dev]
 ```
 
-### MODEL & WEIGHT
+## MODEL & WEIGHT
 
 Before running their tasks, users must download:
 
   1. GeoEvoBuilder package via `git clone https://github.com/PKUliujl/GeoEvoBuilder.git`
   2. model weights using the [link](https://disk.pku.edu.cn/link/AABFDFF8FB729743A8A27FEB5855B31EE0) with access code `xx7W`.
 
-### USAGE
+## USAGE
 
 ```bash
 To better use GeoEvoBuilder toolkit for functional protein sequence design, please add some of these parameters
@@ -74,7 +74,7 @@ For sequence design with additional [processed MSA information](https://github.c
 python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A --MSA examples/3mpc_A.pt
 ```
 
-### CITATION
+## CITATION
 
 If you find GeoEvoBuilder useful in your research, please cite it:
 
