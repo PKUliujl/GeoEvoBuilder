@@ -11,6 +11,7 @@ Created on Wed Apr 27 13:29:44 2022
 
 from geoevobuilder.builder.myclass import Residues
 
+
 class Atom:
     def __init__(self, atomid, name1, resname, chain1, resid, position):
         self.atomid = atomid
@@ -19,8 +20,8 @@ class Atom:
         self.resname = Residues.singleResname(resname)
         self.resid = resid
         self.position = position
-        
-        if self.name1 in ['N','CA','C','O','CB']:
+
+        if self.name1 in ["N", "CA", "C", "O", "CB"]:
             self.ismainchain = True
         else:
-            self.ismainchain = False 
+            self.ismainchain = False
