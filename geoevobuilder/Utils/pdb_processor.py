@@ -155,7 +155,7 @@ def loadpdbs(files, chainID, interval_b, interval_e):
     ns = Bio.PDB.NeighborSearch(atoms)
 
     for model in structure:
-     dssp = DSSP(model, files, dssp='dssp' )
+     dssp = DSSP(model, files, dssp='mkdssp' )
 
      for chain in model:
       if chain.id == chainID:  
