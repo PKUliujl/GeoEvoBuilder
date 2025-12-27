@@ -1,6 +1,8 @@
-USAGE
-======
-```
+# MSA Processing
+
+## USAGE
+
+```bash
 Transform the MSA information to the sequence profile distribution
 
 optional arguments:
@@ -14,6 +16,7 @@ optional arguments:
 ```
 
 Here is an example:
-```
+
+```bash
 python run_sequenceprofile.py -i 3mpc_A.aln -o 3mpc_A.pt
 ```
