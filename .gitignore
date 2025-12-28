@@ -568,6 +568,7 @@ __marimo__/
 # Checkpoint files
 *.ckpt
 *.pt
+!examples/*.pt
 *.pth
 
 # Folders
