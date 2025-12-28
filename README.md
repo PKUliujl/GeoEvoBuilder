@@ -2,7 +2,7 @@
 
 GeoEvoBuilder is an efficient **zero-shot deep-learning** method that enhances **both protein thermal stability and activity**. This approach combines structure-based de novo sequence design with a protein language model (ESM2) to enable diverse functional protein design.
 
-![Alt text](https://github.com/PKUliujl/GeoEvoBuilder/blob/main/image/flow.png)
+![flow](assets/flow.png)
 
 ## INSTALLATION
 
@@ -22,12 +22,12 @@ pip install uv
 uv pip install -e .[dev]
 ```
 
-## MODEL & WEIGHT
+## MODEL & WEIGHTS
 
 Before running their tasks, users must download:
 
   1. GeoEvoBuilder package via `git clone https://github.com/PKUliujl/GeoEvoBuilder.git`
-  2. model weights using the [link](https://disk.pku.edu.cn/link/AABFDFF8FB729743A8A27FEB5855B31EE0) with access code `xx7W`.
+  2. Model weights using the [link](https://disk.pku.edu.cn/link/AABFDFF8FB729743A8A27FEB5855B31EE0) with access code `xx7W`.
 
 ## USAGE
 
@@ -60,7 +60,7 @@ For general sequence design:
 python run_GeoEvoBuilder.py -iP examples/ -i 3mpc_A.pdb --chainID A --SM 100
 ```
 
-![Alt text](https://github.com/PKUliujl/GeoEvoBuilder/blob/main/image/DHFR_results.png)
+![DHFR results](assets/DHFR_results.png)
 
 or see the design for dihydrofolate reductase (DHFR):
 
