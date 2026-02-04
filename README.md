@@ -28,6 +28,7 @@ Before running their tasks, users must download:
 
   1. GeoEvoBuilder package via `git clone https://github.com/PKUliujl/GeoEvoBuilder.git`
   2. Model weights using the [link](https://disk.pku.edu.cn/link/AABFDFF8FB729743A8A27FEB5855B31EE0) with access code `xx7W`.
+  3. Place the downloaded weights file `Se.pt` at `geoevobuilder/Se.pt` (i.e. `GeoEvoBuilder/geoevobuilder/Se.pt` from the repository root).
 
 ## USAGE
 
