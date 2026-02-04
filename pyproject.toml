@@ -9,7 +9,7 @@ authors = [{ name = "Jiale Liu", email = "liujl@pku.edu.cn" }]
 license = { file = "LICENSE" }
 readme = "README.md"
 description = "A deep learning framework for efficient functional and thermostable protein design"
-requires-python = ">=3.11"
+requires-python = "==3.11"
 dependencies = [
   "biopython",
   "fair-esm",
